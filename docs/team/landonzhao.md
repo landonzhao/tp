@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "John Doe's Project Portfolio Page"
+title: "Xin Tong's Project Portfolio Page"
 ---
 
 ### Project: SummonersBook
