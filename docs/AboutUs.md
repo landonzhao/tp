@@ -1,6 +1,6 @@
 ---
-  layout: default.md
-  title: "About Us"
+layout: default.md
+title: "About Us"
 ---
 
 # About Us
@@ -50,12 +50,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Zhao Xin Tong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/landonzhao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Github](http://github.com/landonzhao)]
+[[Portfolio](team/landonzhao.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Getting work done
