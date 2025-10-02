@@ -41,15 +41,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code quality + getting work done
 
-### Jean Doe
+### Valerie Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/valeriexylim.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/valeriexylim)]
+[[portfolio](team/valeriexylim.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI, Documentation
 
 ### Zhao Xin Tong
 
