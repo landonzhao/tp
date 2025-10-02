@@ -31,14 +31,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Justin Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fatkidddd.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/fatkidddd)] 
+[[portfolio](team/fatkidddd.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Code quality + getting work done
 
 ### Jean Doe
 
@@ -54,8 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/landonzhao.png" width="200px">
 
-[[Github](http://github.com/landonzhao)]
-[[Portfolio](team/landonzhao.md)]
+[[github](http://github.com/landonzhao)]
+[[portfolio](team/landonzhao.md)]
 
 * Role: Developer
 * Responsibilities: Getting work done
