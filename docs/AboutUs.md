@@ -23,15 +23,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
   * Overall project coordination 
   * Scheduling and tracking
 
-### Jane Doe
+### Nguyen Tuan Duong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tuanduong18.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tuanduong18)]
+[[portfolio](team/tuanduong18.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Do the work
 
 ### Justin Wong
 
