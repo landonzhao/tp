@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/fatkidddd.png" width="200px">
 
-[[Github](http://github.com/fatkidddd)] 
-[[Portfolio](team/fatkidddd.md)]
+[[github](http://github.com/fatkidddd)] 
+[[portfolio](team/fatkidddd.md)]
 
 * Role: Developer
 * Responsibilities: Code quality + getting work done
@@ -55,8 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/landonzhao.png" width="200px">
 
-[[Github](http://github.com/landonzhao)]
-[[Portfolio](team/landonzhao.md)]
+[[github](http://github.com/landonzhao)]
+[[portfolio](team/landonzhao.md)]
 
 * Role: Developer
 * Responsibilities: Getting work done
