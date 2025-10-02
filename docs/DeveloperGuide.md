@@ -1,10 +1,10 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "SummonersBook Developer Guide"
+pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# SummonersBook Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,71 +274,160 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* gaming coaches or team managers who need to manage a significant number of players
+* prefer lightweight desktop apps over complex web platforms
+* can type fast and are comfortable with CLI-style interactions
+* want quick ways to form balanced teams for training or mock matches
+* are reasonably comfortable using simple technical tools
+* have many players of varying skill levels and roles to balance
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage players and create balanced teams faster and more efficiently than a typical spreadsheet or mouse/GUI-driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​   | I want to …​                                               | So that I can…​                                                       |
+|--------|-----------|------------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *` | coach     | add new players with their in-game IDs                     | track and manage them in the system                                    |
+| `* * *` | coach     | update a player’s details                                  | always have accurate and current information                           |
+| `* * *` | coach     | record each player’s primary and secondary roles           | assign them to suitable teams                                          |
+| `* * *` | coach     | log each player’s preferred champions                      | avoid role duplication and build effective teams                       |
+| `* * *` | coach     | filter players by role, rank, or skill rating              | quickly find suitable team compositions                                |
+| `* * *` | coach     | create practice teams of 5 players                         | simulate real match conditions                                         |
+| `* *`  | coach     | balance teams automatically by skill level                 | ensure matches are fair and competitive                                |
+| `* *`  | coach     | manually adjust teams after creation                       | fine-tune rosters to meet specific training needs                      |
+| `* *`  | coach     | see role distribution in each team                         | avoid having duplicate roles in the same lineup                        |
+| `* *`  | coach     | label each newly created team                              | easily identify and manage them later                                  |
+| `* *`  | coach     | see a list of all created teams in a sidebar               | quickly view and select teams                                          |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SummonersBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+### Use case: Add a player
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User requests to add a player by providing name, rank, role, and champion.
+2. SummonersBook creates the player entry and stores it.
+3. SummonersBook confirms that the player has been added.
 
 **Extensions**
+- 2a. Missing or invalid fields.
+    - 2a1. SummonersBook shows an error message.
+    - Use case ends.
 
-* 2a. The list is empty.
+---
 
-  Use case ends.
+### Use case: View a player
 
-* 3a. The given index is invalid.
+**MSS**
+1. User requests to view a player by specifying the index.
+2. SummonersBook displays the player’s details.
 
-    * 3a1. AddressBook shows an error message.
+**Extensions**
+- 2a. The given index is invalid.
+    - 2a1. SummonersBook shows an error message.
+    - Use case ends.
 
-      Use case resumes at step 2.
+---
 
-*{More to be added}*
+### Use case: Delete a player
+
+**MSS**
+1. User requests to list players.
+2. SummonersBook shows a list of players.
+3. User requests to delete a specific player by index.
+4. SummonersBook deletes the player.
+
+**Extensions**
+- 2a. The list is empty.
+    - Use case ends.
+
+- 3a. The given index is invalid.
+    - 3a1. SummonersBook shows an error message.
+    - Use case resumes at step 2.
+
+---
+
+### Use case: Find players
+
+**MSS**
+1. User requests to find players by specifying search criteria (role, rank, etc.).
+2. SummonersBook displays all players matching the criteria.
+
+**Extensions**
+- 2a. No players match the criteria.
+    - 2a1. SummonersBook shows “no players found.”
+    - Use case ends.
+
+---
+
+### Use case: Auto-group players (create teams)
+
+**MSS**
+1. User requests to group players into balanced teams.
+2. SummonersBook creates the teams automatically.
+3. SummonersBook shows the newly formed teams.
+
+**Extensions**
+- 2a. Insufficient number of players to form teams.
+    - 2a1. SummonersBook shows an error message.
+    - Use case ends.
+
+---
+
+### Use case: Ungroup teams
+
+**MSS**
+1. User requests to ungroup either a specific team or all teams.
+2. SummonersBook disbands the requested team(s).
+3. SummonersBook confirms that the team(s) have been ungrouped.
+
+**Extensions**
+- 1a. The given index is invalid.
+    - 1a1. SummonersBook shows an error message.
+    - Use case ends.
+
+---
+
+### Use case: View a team
+
+**MSS**
+1. User requests to view a team by specifying its index.
+2. SummonersBook displays the players in the team.
+
+**Extensions**
+- 2a. The given index is invalid.
+    - 2a1. SummonersBook shows an error message.
+    - Use case ends.
+
+---
+
+### Use case: Help
+
+**MSS**
+1. User requests help.
+2. SummonersBook displays a list of available commands and usage examples.
+
+---
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4.  Data entered by the user should be **saved automatically** and persist between sessions.  
+5.  The system should handle invalid input gracefully by showing an error message without crashing.
+6.  System should be secure against unintended file modifications (i.e., only application data files are read/written).
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
