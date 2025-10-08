@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Represents a Player's role in League of Legends.
@@ -14,8 +12,6 @@ public class Role {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Role must be one of: Top, Jungle, Mid, ADC, Support";
-
-    private static final Set<String> VALID_ROLES = new HashSet<>();
 
     /**
      * Enum representing valid League of Legends roles.
