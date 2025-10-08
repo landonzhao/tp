@@ -19,6 +19,28 @@ public class Rank {
     public static final String VALIDATION_REGEX =
             "^(Iron|Bronze|Silver|Gold|Platinum|Emerald|Diamond|Master|Grandmaster|Challenger)$";
 
+    /**
+     * Enum representing the different ranked tiers in League of Legends.
+     * Each tier has an associated skill level from 1 (lowest) to 10 (highest).
+     * <p>
+     * The tiers include:
+     * <ul>
+     *     <li>IRON</li>
+     *     <li>BRONZE</li>
+     *     <li>SILVER</li>
+     *     <li>GOLD</li>
+     *     <li>PLATINUM</li>
+     *     <li>EMERALD</li>
+     *     <li>DIAMOND</li>
+     *     <li>MASTER</li>
+     *     <li>GRANDMASTER</li>
+     *     <li>CHALLENGER</li>
+     * </ul>
+     * <p>
+     * Provides a utility method {@link #fromString(String)} to convert a string representation
+     * of a rank to its corresponding enum constant. The conversion is case-insensitive.
+     * If an invalid rank string is provided, {@link IllegalArgumentException} is thrown.
+     */
     public enum RankTier {
         IRON(1),
         BRONZE(2),
@@ -41,7 +63,16 @@ public class Rank {
             return skillLevel;
         }
 
-        // Case-sensitive exact match
+        /**
+         * Converts a string representation of a rank to its corresponding {@code RankTier} enum constant.
+         * <p>
+         * The comparison is case-insensitive, so input strings like "gold", "Gold", or "GOLD" will all
+         * return {@link RankTier#GOLD}.
+         *
+         * @param name the string representation of the rank
+         * @return the corresponding {@code RankTier} enum constant
+         * @throws IllegalArgumentException if the input string does not match any valid rank tier
+         */
         public static RankTier fromString(String name) {
             for (RankTier r : RankTier.values()) {
                 if (r.name().equalsIgnoreCase(name)) {

@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -28,9 +29,7 @@ public class Champion {
      */
     public Champion(String name) {
         requireNonNull(name);
-        if (!isValidChampion(name)) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidChampion(name), MESSAGE_CONSTRAINTS);
         championName = name;
     }
 
