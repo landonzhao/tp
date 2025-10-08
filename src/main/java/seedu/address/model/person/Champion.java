@@ -70,9 +70,6 @@ public class Champion {
      * Returns true if the given string matches one of the champions loaded from the file.
      */
     public static boolean isValidChampion(String test) {
-        if (test == null) {
-            return false;
-        }
         return VALID_CHAMPIONS.contains(test.toLowerCase().trim());
     }
 
