@@ -5,8 +5,8 @@ title: "Duong's Project Portfolio Page"
 
 ### Project: SummonersBook
 
-**SummonersBook** is a desktop address book application used by gaming coaches 
-to manage team members and gamers, and to create balanced teams for training and mock matches. 
+**SummonersBook** is a desktop address book application used by gaming coaches
+to manage team members and gamers, and to create balanced teams for training and mock matches.
 It is written in Java and has both a CLI and GUI (JavaFX).
 
 Below are my contributions to the project:
