@@ -22,6 +22,7 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final Role role = new Role("mid"); //dummy data
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
