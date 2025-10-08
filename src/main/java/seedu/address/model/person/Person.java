@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
@@ -17,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final String id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -28,15 +30,41 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructor for creating a new Person with a randomly generated unique ID.
+     *
+     * @param name Name of the person.
+     * @param phone Phone of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param tags Set of tags associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        this(UUID.randomUUID().toString(), name, phone, email, address, tags);
+    }
+
+    /**
+     * Constructor for creating a Person with an explicit ID.
+     * This is used for deserialization from JSON to preserve the original ID.
+     *
+     * @param id Unique identifier for the person.
+     * @param name Name of the person.
+     * @param phone Phone of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param tags Set of tags associated with the person.
+     */
+    public Person(String id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Name getName() {
