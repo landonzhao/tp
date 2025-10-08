@@ -26,6 +26,7 @@ public class Person {
     // Data fields
     private final Role role = new Role("mid"); //dummy data
     private final Rank rank = new Rank("challenger"); //dummy data
+    private final Champion champion = new Champion("Azir"); //dummy data
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 

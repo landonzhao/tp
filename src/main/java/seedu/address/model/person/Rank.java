@@ -78,8 +78,8 @@ public class Rank {
             return false;
         }
 
-        Rank otherName = (Rank) other;
-        return rank.equals(otherName.rank);
+        Rank otherRank = (Rank) other;
+        return rank.equals(otherRank.rank);
     }
 
     @Override
