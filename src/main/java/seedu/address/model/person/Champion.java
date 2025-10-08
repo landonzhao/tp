@@ -27,10 +27,10 @@ public class Champion {
      *
      * @param name A valid champion name.
      */
-    public Champion(String name) {
-        requireNonNull(name);
-        checkArgument(isValidChampion(name), MESSAGE_CONSTRAINTS);
-        championName = name;
+    public Champion(String champion) {
+        requireNonNull(champion);
+        checkArgument(isValidChampion(champion), MESSAGE_CONSTRAINTS);
+        championName = champion;
     }
 
     /**
