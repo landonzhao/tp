@@ -42,36 +42,11 @@ public class Rank {
      * If an invalid rank string is provided, {@link IllegalArgumentException} is thrown.
      */
     public enum RankTier {
-        IRON(1),
-        BRONZE(2),
-        SILVER(3),
-        GOLD(4),
-        PLATINUM(5),
-        EMERALD(6),
-        DIAMOND(7),
-        MASTER(8),
-        GRANDMASTER(9),
-        CHALLENGER(10);
-
-        private final int skillLevel;
-
-        RankTier(int skillLevel) {
-            this.skillLevel = skillLevel;
-        }
-
-        public int getSkillLevel() {
-            return skillLevel;
-        }
+        IRON, BRONZE, SILVER, GOLD, PLATINUM, EMERALD, DIAMOND, MASTER, GRANDMASTER, CHALLENGER;
 
         /**
-         * Converts a string representation of a rank to its corresponding {@code RankTier} enum constant.
-         * <p>
-         * The comparison is case-insensitive, so input strings like "gold", "Gold", or "GOLD" will all
-         * return {@link RankTier#GOLD}.
-         *
-         * @param name the string representation of the rank
-         * @return the corresponding {@code RankTier} enum constant
-         * @throws IllegalArgumentException if the input string does not match any valid rank tier
+         * Returns the corresponding RankTier for a string (case-insensitive).
+         * @throws IllegalArgumentException if input is invalid.
          */
         public static RankTier fromString(String name) {
             for (RankTier r : RankTier.values()) {
@@ -80,6 +55,25 @@ public class Rank {
                 }
             }
             throw new IllegalArgumentException("Invalid rank: " + name);
+        }
+
+        /**
+         * Checks if the string is a valid rank tier.
+         */
+        public static boolean isValid(String name) {
+            for (RankTier r : RankTier.values()) {
+                if (r.name().equalsIgnoreCase(name)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public String toString() {
+            // Capitalize first letter, rest lowercase
+            String n = name();
+            return n.substring(0, 1).toUpperCase() + n.substring(1).toLowerCase();
         }
     }
 
