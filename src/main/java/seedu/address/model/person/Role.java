@@ -17,15 +17,31 @@ public class Role {
 
     private static final Set<String> VALID_ROLES = new HashSet<>();
 
-    static {
-        VALID_ROLES.add("Top");
-        VALID_ROLES.add("Jungle");
-        VALID_ROLES.add("Mid");
-        VALID_ROLES.add("ADC");
-        VALID_ROLES.add("Support");
+    /**
+     * Enum representing valid League of Legends roles.
+     */
+    public enum RoleType {
+        TOP,
+        JUNGLE,
+        MID,
+        ADC,
+        SUPPORT;
+
+        /**
+         * Returns the RoleType matching the given string (case-insensitive),
+         * or null if no match is found.
+         */
+        public static RoleType fromString(String role) {
+            for (RoleType r : RoleType.values()) {
+                if (r.name().equalsIgnoreCase(role)) {
+                    return r;
+                }
+            }
+            throw new IllegalArgumentException(role);
+        }
     }
 
-    public final String roleName;
+    public final RoleType roleType;
 
     /**
      * Constructs a {@code Role}.
@@ -35,29 +51,36 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        this.roleName = role;
+        RoleType r = RoleType.fromString(role);
+        this.roleType = r;
     }
 
     /**
      * Returns true if a given string is a valid role.
      */
     public static boolean isValidRole(String test) {
-        return VALID_ROLES.contains(test);
+        for (RoleType r : RoleType.values()) {
+            if (r.name().equalsIgnoreCase(test)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public String toString() {
-        return roleName;
+        String name = roleType.name();
+        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 
     @Override
     public boolean equals(Object other) {
         return other instanceof Role
-                && roleName.equals(((Role) other).roleName);
+                && roleType == ((Role) other).roleType;
     }
 
     @Override
     public int hashCode() {
-        return roleName.hashCode();
+        return roleType.hashCode();
     }
 }
