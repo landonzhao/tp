@@ -84,6 +84,18 @@ public class Person {
         return address;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public Champion getChampion() {
+        return champion;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
