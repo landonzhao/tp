@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Champion;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -84,6 +87,11 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "ID"));
+        }
+        final String modelId = id;
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -116,8 +124,34 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = new Role(role);
+
+        if (rank == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rank.class.getSimpleName()));
+        }
+        if (!Rank.isValidRank(rank)) {
+            throw new IllegalValueException(Rank.MESSAGE_CONSTRAINTS);
+        }
+        final Rank modelRank = new Rank(rank);
+
+        if (champion == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Champion.class.getSimpleName()));
+        }
+        if (!Champion.isValidChampion(champion)) {
+            throw new IllegalValueException(Champion.MESSAGE_CONSTRAINTS);
+        }
+        final Champion modelChampion = new Champion(champion);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelId, modelName, modelPhone, modelEmail, modelAddress,
+                modelRole, modelRank, modelChampion, modelTags);
     }
 
 }
