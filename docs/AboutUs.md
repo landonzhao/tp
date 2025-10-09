@@ -19,9 +19,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bryankcodes.md)]
 
 * Role: Team Lead
-* Responsibilities: 
-  * Overall project coordination 
-  * Scheduling and tracking
+* Responsibilities:
+    * Overall project coordination
+    * Scheduling and tracking
 
 ### Nguyen Tuan Duong
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/fatkidddd.png" width="200px">
 
-[[github](http://github.com/fatkidddd)] 
+[[github](http://github.com/fatkidddd)]
 [[portfolio](team/fatkidddd.md)]
 
 * Role: Developer

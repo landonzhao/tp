@@ -86,7 +86,7 @@ Format: `help`
 
 Adds a new player with mandatory details.
 
-Format:  
+Format:
 `add n/NAME rk/RANK rl/ROLE c/CHAMPION`
 
 Examples:
@@ -98,30 +98,30 @@ Examples:
 
 Displays full information for a specific player.
 
-Format:  
+Format:
 `view INDEX`
 
-Example:  
+Example:
 `view 1`
 
-Failure output:  
+Failure output:
 `The player index provided is invalid.`
 
 ### Deleting a player: `delete`
 
 Removes a player permanently.
 
-Format:  
+Format:
 `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Example:  
+Example:
 `delete 3`
 
-Success output:  
+Success output:
 `Deleted Player: <NAME>.`
 
 Failure outputs (examples):
@@ -155,14 +155,14 @@ Examples:
 
 Forms as many balanced teams of five as possible from **unassigned** players.
 
-Format:  
+Format:
 `group`
 
 ### Disbanding a team or all teams : `ungroup`
 
 Disbands one team (returns its players to the unassigned pool) or disbands all teams.
 
-Format:  
+Format:
 `ungroup TEAM_INDEX|all`
 
 Examples:
@@ -177,12 +177,12 @@ Shows roster and summary performance for a specific team.
 Format:
 `viewteam INDEX`
 
-Example:  
+Example:
 `viewteam 1`
 
 ### Exiting the program : `exit`
 
-Closes the application.  
+Closes the application.
 Format: `exit`
 
 ### Saving the data
@@ -191,7 +191,7 @@ Data is saved automatically to disk after any command that changes data. No manu
 
 ## Editing the data file
 
-SummonersBook stores data as JSON at `[JAR file location]/data/summonersbook.json`.  
+SummonersBook stores data as JSON at `[JAR file location]/data/summonersbook.json`.
 Advanced users can edit this file directly.
 
 ## other commands that AB3 has
@@ -274,11 +274,11 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
-**Q:** Why can’t I delete a player who’s on a team?  
+**Q:** Why can’t I delete a player who’s on a team?
 **A:** Team rosters must always have 5 players. Remove the player from their team (via `editteam` in future versions or
 `ungroup` and re-group) before deleting.
 
-**Q:** How are teams named when using `group`?  
+**Q:** How are teams named when using `group`?
 **A:** Sequentially (`Team A`, `Team B`, …), skipping any existing names to avoid conflicts.
 
 --------------------------------------------------------------------------------------------------------------------
