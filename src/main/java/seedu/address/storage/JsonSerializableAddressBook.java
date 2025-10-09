@@ -61,6 +61,7 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+            personList.add(person);
         }
 
         for (JsonAdaptedTeam jsonAdaptedTeam : teams) {
@@ -73,5 +74,4 @@ class JsonSerializableAddressBook {
 
         return addressBook;
     }
-
 }

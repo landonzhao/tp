@@ -13,9 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Champion;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
 
 public class JsonAdaptedPersonTest {
     private static final String DUMMY_ID = "";
@@ -109,6 +112,54 @@ public class JsonAdaptedPersonTest {
                 VALID_ROLE, VALID_RANK, VALID_CHAMPION, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullRole_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                null, VALID_RANK, VALID_CHAMPION, VALID_TAGS);
+        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
+                Role.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidRole_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                "invalid role", VALID_RANK, VALID_CHAMPION, VALID_TAGS);
+        assertThrows(IllegalValueException.class, Role.MESSAGE_CONSTRAINTS, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullRank_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_ROLE, null, VALID_CHAMPION, VALID_TAGS);
+        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
+                Rank.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidRank_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_ROLE, "invalid rank", VALID_CHAMPION, VALID_TAGS);
+        assertThrows(IllegalValueException.class, Rank.MESSAGE_CONSTRAINTS, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullChampion_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_ROLE, VALID_RANK, null, VALID_TAGS);
+        String expectedMessage = String.format(JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT,
+                Champion.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidChampion_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUMMY_ID, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_ROLE, VALID_RANK, "invalid champion", VALID_TAGS);
+        assertThrows(IllegalValueException.class, Champion.MESSAGE_CONSTRAINTS, person::toModelType);
     }
 
     @Test

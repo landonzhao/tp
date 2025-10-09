@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTeams.TEAM_A;
+import static seedu.address.testutil.TypicalTeams.TEAM_B;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,6 +69,31 @@ public class UniqueTeamListTest {
         uniqueTeamList.add(TEAM_A);
         uniqueTeamList.remove(TEAM_A);
         UniqueTeamList expectedUniqueTeamList = new UniqueTeamList();
+        assertEquals(expectedUniqueTeamList, uniqueTeamList);
+    }
+
+    @Test
+    public void setTeam_nullTargetTeam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTeamList.setTeam(null, TEAM_A));
+    }
+
+    @Test
+    public void setTeam_nullEditedTeam_throwsNullPointerException() {
+        uniqueTeamList.add(TEAM_A);
+        assertThrows(NullPointerException.class, () -> uniqueTeamList.setTeam(TEAM_A, null));
+    }
+
+    @Test
+    public void setTeam_targetTeamNotInList_throwsTeamNotFoundException() {
+        assertThrows(TeamNotFoundException.class, () -> uniqueTeamList.setTeam(TEAM_A, TEAM_A));
+    }
+
+    @Test
+    public void setTeam_editedTeamHasDifferentIdentity_success() {
+        uniqueTeamList.add(TEAM_A);
+        uniqueTeamList.setTeam(TEAM_A, TEAM_B);
+        UniqueTeamList expectedUniqueTeamList = new UniqueTeamList();
+        expectedUniqueTeamList.add(TEAM_B);
         assertEquals(expectedUniqueTeamList, uniqueTeamList);
     }
 

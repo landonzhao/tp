@@ -145,12 +145,12 @@ class JsonAdaptedPerson {
                     Champion.class.getSimpleName()));
         }
         if (!Champion.isValidChampion(champion)) {
-            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Champion.MESSAGE_CONSTRAINTS);
         }
         final Champion modelChampion = new Champion(champion);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+        return new Person(modelId, modelName, modelPhone, modelEmail, modelAddress,
                 modelRole, modelRank, modelChampion, modelTags);
     }
 
