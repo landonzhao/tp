@@ -31,7 +31,22 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Constructor for creating a new Person with a randomly generated unique ID.
+     * Constructor for creating a new Person with default role, rank, and champion (backwards compatibility).
+     *
+     * @param name Name of the person.
+     * @param phone Phone of the person.
+     * @param email Email of the person.
+     * @param address Address of the person.
+     * @param tags Set of tags associated with the person.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        this(UUID.randomUUID().toString(), name, phone, email, address,
+             new Role("mid"), new Rank("gold"), new Champion("Ahri"), tags);
+    }
+
+    /**
+     * Constructor for creating a new Person with specified role, rank, and champion.
+     * Generates a random UUID for the person.
      *
      * @param name Name of the person.
      * @param phone Phone of the person.
