@@ -1,8 +1,15 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "id": "abc-123-def-456",
+      "name": "Hans Muster",
+      "phone": "9482424",
+      "email": "invalid@email!3e",
+      "address": "4th street",
+      "role": "jungle",
+      "rank": "iron",
+      "champion": "Vi"
+    }
+  ],
+  "teams": []
 }
