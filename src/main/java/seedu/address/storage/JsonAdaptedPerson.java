@@ -29,6 +29,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String role;
+    private final String rank;
+    private final String champion;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -37,12 +40,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("id") String id, @JsonProperty("name") String name,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("address") String address, @JsonProperty("role") String role,
+                             @JsonProperty("rank") String rank, @JsonProperty("champion") String champion,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.role = role;
+        this.rank = rank;
+        this.champion = champion;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -57,6 +65,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        role = source.getRole().toString();
+        rank = source.getRank().toString();
+        champion = source.getChampion().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
