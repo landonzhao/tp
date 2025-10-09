@@ -106,6 +106,10 @@ Removes a player permanently.
 Format:  
 `delete INDEX`
 
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 Example:  
 `delete 3`
 
@@ -123,20 +127,19 @@ Filters the player list by one or more attributes. Matching is **case-insensitiv
 Format (any order, at least one filter):  
 `find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]`
 
+- Case-insensitive. faker matches Faker. 
+- Only the name is searched in this mode. 
+- Full-word matching (not substrings). Fa does not match Faker. 
+- AND search: the player’s name must contain all the given keywords (in any order).
+
 Examples:
 - `find rl/Bottom` — all Bottom players
 - `find rk/Gold` — all Gold players
-- `find rl/Mid rk/Diamond` — Diamond Mid players
+- `find rl/Mid rk/Diamond` — all Diamond Mid players
 - `find c/Thresh` — players whose main champion name contains “Thresh”
 - `find n/faker` — players whose name contains “faker”
 
-Success output:  
-`X player(s) listed!` (0 means no matches.)
-
-Failure output:
-- `Provide at least one filter: n/, rl/, rk/, or c/.`
-
-### Auto-grouping players into teams : `group`
+### Auto-grouping players into teams: `group`
 
 Forms as many balanced teams of five as possible from **unassigned** players.
 
@@ -204,7 +207,7 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain ANY of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -220,35 +223,11 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
@@ -273,6 +252,12 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q:** Why can’t I delete a player who’s on a team?  
+**A:** Team rosters must always have 5 players. Remove the player from their team (via `editteam` in future versions or `ungroup` and re-group) before deleting.
+
+**Q:** How are teams named when using `group`?  
+**A:** Sequentially (`Team A`, `Team B`, …), skipping any existing names to avoid conflicts.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -282,7 +267,21 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary - SummonersBook
+
+Action           | Format, Examples
+-----------------|---------------------------------------------------------------------------------------------------------------------------------------
+**Help**         | `help`
+**Add player**   | `add n/NAME rk/RANK rl/ROLE c/CHAMPION`  
+**View player**  | `view INDEX`  
+**Delete player**| `delete INDEX`
+**Find players** | `find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]`  
+**Group teams**  | `group`
+**Ungroup**      | `ungroup TEAM_INDEX`  ·  `ungroup all`
+**View team**    | `viewteam INDEX`
+**Exit**         | `exit`
+
+## Command summary - AB3
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
