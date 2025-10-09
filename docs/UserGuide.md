@@ -4,9 +4,9 @@
   pageNav: 3
 ---
 
-# AB-3 User Guide
+# SummonersBook User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SummonersBook is a **desktop app for esports players (League of Legends)**, optimized for a fast **Command Line Interface (CLI)** while still providing clear visual feedback via a Graphical User Interface (GUI). If you can type fast, SummonersBook helps you manage players and form balanced teams faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -18,28 +18,24 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `summonersbook.jar` file from [here](https://github.com/AY2526S1-CS2103T-F08b-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `add n/Faker rk/Grandmaster rl/Bottom c/Sivir` — Adds a new player with a specified rank, role and champion.
+    * `find rl/Support` — Filters the player list based on the role "Support".
+    * `group` — Auto-creates balanced 5-player teams from unassigned players.
+    * `viewteam 1` — Shows full details of the 1st team.
+    * `exit` — Exits the app. 
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,23 +46,27 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME rk/RANK rl/ROLE c/CHAMPION`, `NAME` , `RANK`, `ROLE`, `CHAMPION` are parameters which can be used as `add n/Faker rk/Grandmaster rl/Bottom c/Sivir`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g., `find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]` can be used as `find rk/Gold`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g., for `add n/NAME rk/RANK rl/ROLE c/CHAMPION`, `add rk/RANK n/NAME rl/ROLE c/CHAMPION` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Indices refer to the **currently displayed** list (players or teams), starting from 1.
+ 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+
+## SummonersBook commands
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -76,21 +76,109 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a player: `add`
 
-Adds a person to the address book.
+Adds a new player with mandatory details.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
+Format:  
+`add n/NAME rk/RANK rl/ROLE c/CHAMPION`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Faker rk/Grandmaster rl/Bottom c/Sivir`
+* `add n/Imissher rk/Gold rl/Support c/Thresh`
 
+### View a player's details : `view`
+
+Displays full information for a specific player.
+
+Format:  
+`view INDEX`
+
+Example:  
+`view 1`
+
+Failure output:  
+`The player index provided is invalid.`
+
+### Deleting a player: `delete`
+Removes a player permanently.
+
+Format:  
+`delete INDEX`
+
+Example:  
+`delete 3`
+
+Success output:  
+`Deleted Player: <NAME>.`
+
+Failure outputs (examples):
+- `The player index provided is invalid.`
+- `Cannot delete player. <NAME> is currently on team '<TEAM NAME>'.`  
+  (Remove from team before deleting.)
+
+### Finding players : `find`
+Filters the player list by one or more attributes. Matching is **case-insensitive**. Results show players that satisfy **all** provided filters (logical AND). Exact value matching is used for rank/role; name/champion use substring match.
+
+Format (any order, at least one filter):  
+`find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]`
+
+Examples:
+- `find rl/Bottom` — all Bottom players
+- `find rk/Gold` — all Gold players
+- `find rl/Mid rk/Diamond` — Diamond Mid players
+- `find c/Thresh` — players whose main champion name contains “Thresh”
+- `find n/faker` — players whose name contains “faker”
+
+Success output:  
+`X player(s) listed!` (0 means no matches.)
+
+Failure output:
+- `Provide at least one filter: n/, rl/, rk/, or c/.`
+
+### Auto-grouping players into teams : `group`
+
+Forms as many balanced teams of five as possible from **unassigned** players.
+
+Format:  
+`group`
+
+### Disbanding a team or all teams : `ungroup`
+Disbands one team (returns its players to the unassigned pool) or disbands all teams.
+
+Format:  
+`ungroup TEAM_INDEX|all`
+
+Examples:
+- `ungroup 1` — disbands the 1st team
+- `ungroup all` — disbands all teams
+
+### Viewing a team’s details : `viewteam`
+
+Shows roster and summary performance for a specific team.
+
+Format: 
+`viewteam INDEX`
+
+Example:  
+`viewteam 1`
+
+### Exiting the program : `exit`
+
+Closes the application.  
+Format: `exit`
+
+### Saving the data
+
+Data is saved automatically to disk after any command that changes data. No manual save is required.
+
+## Editing the data file
+
+SummonersBook stores data as JSON at `[JAR file location]/data/summonersbook.json`.  
+Advanced users can edit this file directly.
+
+
+## other commands that AB3 has
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -171,6 +259,7 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
 </box>
 
 ### Archiving data files `[coming in v2.0]`
