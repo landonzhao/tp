@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Champion;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -56,13 +56,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Rank parseRank(String rank) throws ParseException {
+        requireNonNull(rank);
+        String trimmedRank = rank.trim();
+        if (!Rank.isValidRank(trimmedRank)) {
+            throw new ParseException(Rank.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Rank(trimmedRank);
     }
 
     /**
@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Role(trimmedRole);
     }
 
     /**
@@ -86,13 +86,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Champion parseChampion(String champion) throws ParseException {
+        requireNonNull(champion);
+        String trimmedChampion = champion.trim();
+        if (!Champion.isValidChampion(trimmedChampion)) {
+            throw new ParseException(Champion.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Champion(trimmedChampion);
     }
 
     /**
