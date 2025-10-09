@@ -90,6 +90,27 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor for creating a new Person with name, role, rank, champion, and tags.
+     * Other fields are set to default stub values.
+     *
+     * @param name Name of the person.
+     * @param role Role of the person.
+     * @param rank Rank of the person.
+     * @param champion Champion of the person.
+     * @param tags Set of tags associated with the person.
+     */
+    public Person(Name name, Rank rank, Role role, Champion champion, Set<Tag> tags) {
+        this(name,
+                new Phone("00000000"), // stub phone
+                new Email("stub@example.com"), // stub email
+                new Address("123 Stub Street"), // stub address
+                role,
+                rank,
+                champion,
+                tags);
+    }
+
     public String getId() {
         return id;
     }
