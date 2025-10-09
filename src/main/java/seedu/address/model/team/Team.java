@@ -116,6 +116,33 @@ public class Team {
     }
 
     /**
+     * Returns true if both teams have the same players.
+     * This defines a weaker notion of equality between two teams.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        }
+
+        if (otherTeam == null) {
+            return false;
+        }
+
+        // Compare player IDs to determine if it's the same team formation
+        if (this.persons.size() != otherTeam.persons.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < this.persons.size(); i++) {
+            if (!this.persons.get(i).getId().equals(otherTeam.persons.get(i).getId())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Returns true if both teams have the same identity and data fields.
      * This defines a stronger notion of equality between two teams.
      */
