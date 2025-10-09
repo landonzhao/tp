@@ -24,9 +24,9 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Role role = new Role("mid"); //dummy data
-    private final Rank rank = new Rank("challenger"); //dummy data
-    private final Champion champion = new Champion("Azir"); //dummy data
+    private final Role role;
+    private final Rank rank;
+    private final Champion champion;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -37,10 +37,14 @@ public class Person {
      * @param phone Phone of the person.
      * @param email Email of the person.
      * @param address Address of the person.
+     * @param role Role of the person.
+     * @param rank Rank of the person.
+     * @param champion Champion of the person.
      * @param tags Set of tags associated with the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(UUID.randomUUID().toString(), name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Role role, Rank rank,
+                  Champion champion, Set<Tag> tags) {
+        this(UUID.randomUUID().toString(), name, phone, email, address, role, rank, champion, tags);
     }
 
     /**
@@ -52,15 +56,22 @@ public class Person {
      * @param phone Phone of the person.
      * @param email Email of the person.
      * @param address Address of the person.
+     * @param role Role of the person.
+     * @param rank Rank of the person.
+     * @param champion Champion of the person.
      * @param tags Set of tags associated with the person.
      */
-    public Person(String id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(id, name, phone, email, address, tags);
+    public Person(String id, Name name, Phone phone, Email email, Address address, Role role, Rank rank,
+                  Champion champion, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, role, rank, champion, tags);
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.role = role;
+        this.rank = rank;
+        this.champion = champion;
         this.tags.addAll(tags);
     }
 
