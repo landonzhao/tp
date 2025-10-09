@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTeamList teams;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        teams = new UniqueTeamList();
     }
 
     public AddressBook() {}
@@ -68,11 +72,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     */
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teams.contains(team);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a team to the address book.
+     * The team must not already exist in the address book.
+     */
+    public void addTeam(Team t) {
+        teams.add(t);
     }
 
     /**
@@ -106,6 +126,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Team> getTeamList() {
+        return teams.asUnmodifiableObservableList();
     }
 
     @Override
