@@ -15,9 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Champion;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +29,9 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_CHAMPION = "123";
+    private static final String INVALID_RANK = "X";
+    private static final String INVALID_ROLE = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +39,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_CHAMPION = "Ahri";
+    private static final String VALID_RANK = "Gold";
+    private static final String VALID_ROLE = "Mid";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +201,44 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    // Champion tests
+    @Test
+    public void parseChampion_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseChampion(INVALID_CHAMPION));
+    }
+
+    @Test
+    public void parseChampion_validValue_returnsChampion() throws Exception {
+        Champion expectedChampion = new Champion(VALID_CHAMPION);
+        assertEquals(expectedChampion, ParserUtil.parseChampion(VALID_CHAMPION));
+        assertEquals(expectedChampion, ParserUtil.parseChampion(WHITESPACE + VALID_CHAMPION + WHITESPACE));
+    }
+
+    // Rank tests
+    @Test
+    public void parseRank_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRank(INVALID_RANK));
+    }
+
+    @Test
+    public void parseRank_validValue_returnsRank() throws Exception {
+        Rank expectedRank = new Rank(VALID_RANK);
+        assertEquals(expectedRank, ParserUtil.parseRank(VALID_RANK));
+        assertEquals(expectedRank, ParserUtil.parseRank(WHITESPACE + VALID_RANK + WHITESPACE));
+    }
+
+    // Role tests
+    @Test
+    public void parseRole_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRole(INVALID_ROLE));
+    }
+
+    @Test
+    public void parseRole_validValue_returnsRole() throws Exception {
+        Role expectedRole = new Role(VALID_ROLE);
+        assertEquals(expectedRole, ParserUtil.parseRole(VALID_ROLE));
+        assertEquals(expectedRole, ParserUtil.parseRole(WHITESPACE + VALID_ROLE + WHITESPACE));
     }
 }
