@@ -9,6 +9,9 @@ import java.util.UUID;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.exceptions.DuplicateChampionException;
+import seedu.address.model.team.exceptions.DuplicateRoleException;
+import seedu.address.model.team.exceptions.InvalidTeamSizeException;
 
 /**
  * Represents a Team in the summoners book.
@@ -18,7 +21,8 @@ import seedu.address.model.person.Person;
 public class Team {
 
     public static final int TEAM_SIZE = 5;
-    public static final String MESSAGE_CONSTRAINTS = "A team must have exactly 5 persons with unique roles.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "A team must have exactly 5 persons with unique roles and unique champions.";
 
     // Identity fields
     private final String id;
@@ -50,17 +54,46 @@ public class Team {
     }
 
     /**
-     * Validates that the team has exactly 5 persons with unique roles.
+     * Validates that the team has exactly 5 persons with unique roles and unique champions.
      *
      * @param persons List of persons to validate.
-     * @throws IllegalArgumentException if team composition is invalid.
+     * @throws InvalidTeamSizeException if team does not have exactly 5 players.
+     * @throws DuplicateRoleException if team has duplicate roles.
+     * @throws DuplicateChampionException if team has duplicate champions.
      */
     private void validateTeamComposition(List<Person> persons) {
+        // Check team size
         if (persons.size() != TEAM_SIZE) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            throw new InvalidTeamSizeException(persons.size());
         }
 
-        // TODO: Check for unique
+        // Pairwise conflict check for all players
+        for (int i = 0; i < persons.size(); i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                checkConflict(persons.get(i), persons.get(j));
+            }
+        }
+    }
+
+    /**
+     * Checks if two persons have a conflict for team composition.
+     * A conflict occurs when two persons have the same role or the same champion.
+     *
+     * @param p1 First person to check.
+     * @param p2 Second person to check.
+     * @throws DuplicateRoleException if both persons have the same role.
+     * @throws DuplicateChampionException if both persons have the same champion.
+     */
+    private void checkConflict(Person p1, Person p2) {
+        // Check for duplicate role
+        if (p1.getRole().equals(p2.getRole())) {
+            throw new DuplicateRoleException(p1, p2);
+        }
+
+        // Check for duplicate champion
+        if (p1.getChampion().equals(p2.getChampion())) {
+            throw new DuplicateChampionException(p1, p2);
+        }
     }
 
     public String getId() {
