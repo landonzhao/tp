@@ -79,20 +79,20 @@ public class Team {
      * Checks if two persons have a conflict for team composition.
      * A conflict occurs when two persons have the same role or the same champion.
      *
-     * @param p1 First person to check.
-     * @param p2 Second person to check.
+     * @param firstPerson First person to check.
+     * @param secondPerson Second person to check.
      * @throws DuplicateRoleException if both persons have the same role.
      * @throws DuplicateChampionException if both persons have the same champion.
      */
-    private void checkConflict(Person p1, Person p2) {
+    private void checkConflict(Person firstPerson, Person secondPerson) {
         // Check for duplicate role
-        if (p1.getRole().equals(p2.getRole())) {
-            throw new DuplicateRoleException(p1, p2);
+        if (firstPerson.getRole().equals(secondPerson.getRole())) {
+            throw new DuplicateRoleException(firstPerson, secondPerson);
         }
 
         // Check for duplicate champion
-        if (p1.getChampion().equals(p2.getChampion())) {
-            throw new DuplicateChampionException(p1, p2);
+        if (firstPerson.getChampion().equals(secondPerson.getChampion())) {
+            throw new DuplicateChampionException(firstPerson, secondPerson);
         }
     }
 
