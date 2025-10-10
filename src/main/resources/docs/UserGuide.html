@@ -17,160 +17,32 @@
             --callout-bg: #121622;
             --callout-border: #28304a;
         }
-
-        html, body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 2.5rem 1.25rem 4rem;
-        }
-
-        h1, h2, h3 {
-            line-height: 1.25;
-            margin: 2rem 0 0.75rem;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            color: #dfe3ff;
-        }
-
-        h3 {
-            font-size: 1.15rem;
-            color: #cbd5ff;
-        }
-
-        p {
-            margin: 0.75rem 0;
-            color: var(--text);
-        }
-
-        a {
-            color: var(--accent-2);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        hr {
-            border: 0;
-            border-top: 1px solid var(--table-border);
-            margin: 2rem 0;
-        }
-
-        .panel {
-            background: var(--panel);
-            border: 1px solid var(--table-border);
-            border-radius: 14px;
-            padding: 1rem 1.25rem;
-        }
-
-        .callout {
-            background: var(--callout-bg);
-            border: 1px solid var(--callout-border);
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            margin: 1rem 0 1.5rem;
-        }
-
-        .callout strong {
-            color: #dfe3ff;
-        }
-
-        ul, ol {
-            padding-left: 1.35rem;
-        }
-
-        code, pre, kbd {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        }
-
-        code {
-            background: var(--code-bg);
-            padding: 0.15rem 0.35rem;
-            border-radius: 6px;
-            border: 1px solid #1e2330;
-        }
-
-        pre {
-            background: var(--code-bg);
-            border: 1px solid #1e2330;
-            border-radius: 10px;
-            padding: 1rem;
-            overflow: auto;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        @media (min-width: 880px) {
-            .grid-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1rem 0;
-            background: var(--panel);
-            border: 1px solid var(--table-border);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            border-bottom: 1px solid var(--table-border);
-            padding: 0.75rem 0.75rem;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        th {
-            background: #1b1f2a;
-            color: #e9ecff;
-            font-weight: 600;
-        }
-
-        tr:last-child td {
-            border-bottom: 0;
-        }
-
-        .small {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, rgba(138, 99, 255, 0.12), rgba(55, 192, 255, 0.08));
-            border: 1px solid rgba(138, 99, 255, 0.25);
-            padding: 1rem 1.25rem;
-            border-radius: 16px;
-        }
-
-        .kbd {
-            background: #0c0e12;
-            border: 1px solid #1e2330;
-            border-radius: 6px;
-            padding: 0.1rem 0.35rem;
-        }
+        html, body { margin: 0; background: var(--bg); color: var(--text);
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          line-height: 1.6; scroll-behavior: smooth; }
+        .container { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+        h1, h2, h3 { line-height: 1.25; margin: 2rem 0 0.75rem; font-weight: 700; }
+        h1 { font-size: 2rem; } h2 { font-size: 1.5rem; color: #dfe3ff; } h3 { font-size: 1.15rem; color: #cbd5ff; }
+        p { margin: 0.75rem 0; color: var(--text); }
+        a { color: var(--accent-2); text-decoration: none; } a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid var(--table-border); margin: 2rem 0; }
+        .panel { background: var(--panel); border: 1px solid var(--table-border); border-radius: 14px; padding: 1rem 1.25rem; }
+        .callout { background: var(--callout-bg); border: 1px solid var(--callout-border); border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; }
+        .callout strong { color: #dfe3ff; }
+        ul, ol { padding-left: 1.35rem; }
+        code, pre, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+        code { background: var(--code-bg); padding: 0.15rem 0.35rem; border-radius: 6px; border: 1px solid #1e2330; }
+        pre { background: var(--code-bg); border: 1px solid #1e2330; border-radius: 10px; padding: 1rem; overflow: auto; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: var(--panel); border: 1px solid var(--table-border); border-radius: 10px; overflow: hidden; }
+        th, td { border-bottom: 1px solid var(--table-border); padding: 0.75rem 0.75rem; text-align: left; vertical-align: top; }
+        th { background: #1b1f2a; color: #e9ecff; font-weight: 600; } tr:last-child td { border-bottom: 0; }
+        .small { color: var(--muted); font-size: 0.95rem; }
+        .hero { background: linear-gradient(135deg, rgba(138, 99, 255, 0.12), rgba(55, 192, 255, 0.08)); border: 1px solid rgba(138, 99, 255, 0.25); padding: 1rem 1.25rem; border-radius: 16px; }
+        .toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; margin-top: 0.75rem; }
+        @media (max-width: 720px) { .toc { grid-template-columns: 1fr; } }
+        .toc a { display: block; padding: 0.5rem 0.6rem; border: 1px solid var(--table-border); border-radius: 10px; background: #13161c; }
+        .toc a code { background: transparent; border: 0; padding: 0; color: #cfe5ff; }
     </style>
 </head>
 <body>
@@ -232,12 +104,32 @@
         </ul>
     </div>
 
+    <!-- NEW: Features summary / table of contents -->
+    <div class="panel">
+        <h3 style="margin-top:0.2rem;">Features summary</h3>
+        <div class="toc">
+            <a href="#cmd-help"><code>help</code> — View help</a>
+            <a href="#cmd-add"><code>add</code> — Add a player</a>
+            <a href="#cmd-view"><code>view</code> — View a player</a>
+            <a href="#cmd-delete"><code>delete</code> — Delete a player</a>
+            <a href="#cmd-find"><code>find</code> — Find players</a>
+            <a href="#cmd-group"><code>group</code> — Auto‑group players</a>
+            <a href="#cmd-ungroup"><code>ungroup</code> — Disband team(s)</a>
+            <a href="#cmd-viewteam"><code>viewteam</code> — View a team</a>
+            <a href="#cmd-exit"><code>exit</code> — Exit app</a>
+            <a href="#cmd-saving"><code>saving</code> — Auto‑save</a>
+            <a href="#cmd-editdata"><code>edit data</code> — JSON file</a>
+        </div>
+    </div>
+
     <h2>SummonersBook commands</h2>
 
+    <a id="cmd-help"></a>
     <h3>Viewing help : <code>help</code></h3>
     <p>Shows a message explaining how to access the help page.</p>
     <p><strong>Format:</strong> <code>help</code></p>
 
+    <a id="cmd-add"></a>
     <h3>Adding a player: <code>add</code></h3>
     <p>Adds a new player with mandatory details.</p>
     <p><strong>Format:</strong> <code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code></p>
@@ -247,12 +139,14 @@
         <li><code>add n/Imissher rk/Gold rl/Support c/Thresh</code></li>
     </ul>
 
+    <a id="cmd-view"></a>
     <h3>View a player's details : <code>view</code></h3>
     <p>Displays full information for a specific player.</p>
     <p><strong>Format:</strong> <code>view INDEX</code></p>
     <p><strong>Example:</strong> <code>view 1</code></p>
     <p><strong>Failure output:</strong> <code>The player index provided is invalid.</code></p>
 
+    <a id="cmd-delete"></a>
     <h3>Deleting a player: <code>delete</code></h3>
     <p>Removes a player permanently.</p>
     <p><strong>Format:</strong> <code>delete INDEX</code></p>
@@ -269,6 +163,7 @@
         <li><code>Cannot delete player. &lt;NAME&gt; is currently on team '&lt;TEAM NAME&gt;'.</code></li>
     </ul>
 
+    <a id="cmd-find"></a>
     <h3>Finding players : <code>find</code></h3>
     <p>Filters the player list by one or more attributes. Matching is <strong>case-insensitive</strong>. Results show
         players that satisfy <strong>all</strong> provided filters (logical AND). Exact value matching is used for
@@ -290,10 +185,12 @@
         <li><code>find n/faker</code> — players whose name contains “faker”</li>
     </ul>
 
+    <a id="cmd-group"></a>
     <h3>Auto-grouping players into teams: <code>group</code></h3>
     <p>Forms as many balanced teams of five as possible from <strong>unassigned</strong> players.</p>
     <p><strong>Format:</strong> <code>group</code></p>
 
+    <a id="cmd-ungroup"></a>
     <h3>Disbanding a team or all teams : <code>ungroup</code></h3>
     <p>Disbands one team (returns its players to the unassigned pool) or disbands all teams.</p>
     <p><strong>Format:</strong> <code>ungroup TEAM_INDEX|all</code></p>
@@ -303,18 +200,22 @@
         <li><code>ungroup all</code> — disbands all teams</li>
     </ul>
 
+    <a id="cmd-viewteam"></a>
     <h3>Viewing a team’s details : <code>viewteam</code></h3>
     <p>Shows roster and summary performance for a specific team.</p>
     <p><strong>Format:</strong> <code>viewteam INDEX</code></p>
     <p><strong>Example:</strong> <code>viewteam 1</code></p>
 
+    <a id="cmd-exit"></a>
     <h3>Exiting the program : <code>exit</code></h3>
     <p>Closes the application.</p>
     <p><strong>Format:</strong> <code>exit</code></p>
 
+    <a id="cmd-saving"></a>
     <h3>Saving the data</h3>
     <p>Data is saved automatically to disk after any command that changes data. No manual save is required.</p>
 
+    <a id="cmd-editdata"></a>
     <h2>Editing the data file</h2>
     <p>SummonersBook stores data as JSON at <code>[JAR file location]/data/summonersbook.json</code>.
         Advanced users can edit this file directly.</p>
@@ -400,88 +301,34 @@
     <h2>Command summary — SummonersBook</h2>
     <table>
         <thead>
-        <tr>
-            <th>Action</th>
-            <th>Format, Examples</th>
-        </tr>
+        <tr><th>Action</th><th>Format, Examples</th></tr>
         </thead>
         <tbody>
-        <tr>
-            <td><strong>Help</strong></td>
-            <td><code>help</code></td>
-        </tr>
-        <tr>
-            <td><strong>Add player</strong></td>
-            <td><code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code></td>
-        </tr>
-        <tr>
-            <td><strong>View player</strong></td>
-            <td><code>view INDEX</code></td>
-        </tr>
-        <tr>
-            <td><strong>Delete player</strong></td>
-            <td><code>delete INDEX</code></td>
-        </tr>
-        <tr>
-            <td><strong>Find players</strong></td>
-            <td><code>find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]</code></td>
-        </tr>
-        <tr>
-            <td><strong>Group teams</strong></td>
-            <td><code>group</code></td>
-        </tr>
-        <tr>
-            <td><strong>Ungroup</strong></td>
-            <td><code>ungroup TEAM_INDEX</code> · <code>ungroup all</code></td>
-        </tr>
-        <tr>
-            <td><strong>View team</strong></td>
-            <td><code>viewteam INDEX</code></td>
-        </tr>
-        <tr>
-            <td><strong>Exit</strong></td>
-            <td><code>exit</code></td>
-        </tr>
+        <tr><td><strong>Help</strong></td><td><code>help</code></td></tr>
+        <tr><td><strong>Add player</strong></td><td><code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code></td></tr>
+        <tr><td><strong>View player</strong></td><td><code>view INDEX</code></td></tr>
+        <tr><td><strong>Delete player</strong></td><td><code>delete INDEX</code></td></tr>
+        <tr><td><strong>Find players</strong></td><td><code>find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]</code></td></tr>
+        <tr><td><strong>Group teams</strong></td><td><code>group</code></td></tr>
+        <tr><td><strong>Ungroup</strong></td><td><code>ungroup TEAM_INDEX</code> · <code>ungroup all</code></td></tr>
+        <tr><td><strong>View team</strong></td><td><code>viewteam INDEX</code></td></tr>
+        <tr><td><strong>Exit</strong></td><td><code>exit</code></td></tr>
         </tbody>
     </table>
 
     <h2>Command summary — AB3</h2>
     <table>
         <thead>
-        <tr>
-            <th>Action</th>
-            <th>Format, Examples</th>
-        </tr>
+        <tr><th>Action</th><th>Format, Examples</th></tr>
         </thead>
         <tbody>
-        <tr>
-            <td><strong>Add</strong></td>
-            <td><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​</code></td>
-        </tr>
-        <tr>
-            <td><strong>Clear</strong></td>
-            <td><code>clear</code></td>
-        </tr>
-        <tr>
-            <td><strong>Delete</strong></td>
-            <td><code>delete INDEX</code></td>
-        </tr>
-        <tr>
-            <td><strong>Edit</strong></td>
-            <td><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​</code></td>
-        </tr>
-        <tr>
-            <td><strong>Find</strong></td>
-            <td><code>find KEYWORD [MORE_KEYWORDS]</code></td>
-        </tr>
-        <tr>
-            <td><strong>List</strong></td>
-            <td><code>list</code></td>
-        </tr>
-        <tr>
-            <td><strong>Help</strong></td>
-            <td><code>help</code></td>
-        </tr>
+        <tr><td><strong>Add</strong></td><td><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​</code></td></tr>
+        <tr><td><strong>Clear</strong></td><td><code>clear</code></td></tr>
+        <tr><td><strong>Delete</strong></td><td><code>delete INDEX</code></td></tr>
+        <tr><td><strong>Edit</strong></td><td><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​</code></td></tr>
+        <tr><td><strong>Find</strong></td><td><code>find KEYWORD [MORE_KEYWORDS]</code></td></tr>
+        <tr><td><strong>List</strong></td><td><code>list</code></td></tr>
+        <tr><td><strong>Help</strong></td><td><code>help</code></td></tr>
         </tbody>
     </table>
 
