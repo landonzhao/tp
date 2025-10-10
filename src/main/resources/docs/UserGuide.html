@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>SummonersBook User Guide</title>
+    <style>
+        :root {
+            --bg: #101114;
+            --panel: #16181d;
+            --text: #e6e6e6;
+            --muted: #a8b0bf;
+            --accent: #8a63ff;
+            --accent-2: #37c0ff;
+            --code-bg: #0c0e12;
+            --table-border: #2a2f3a;
+            --callout-bg: #121622;
+            --callout-border: #28304a;
+        }
+        html, body { margin: 0; background: var(--bg); color: var(--text);
+          font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          line-height: 1.6; scroll-behavior: smooth; }
+        .container { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+        h1, h2, h3 { line-height: 1.25; margin: 2rem 0 0.75rem; font-weight: 700; }
+        h1 { font-size: 2rem; } h2 { font-size: 1.5rem; color: #dfe3ff; } h3 { font-size: 1.15rem; color: #cbd5ff; }
+        p { margin: 0.75rem 0; color: var(--text); }
+        a { color: var(--accent-2); text-decoration: none; } a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid var(--table-border); margin: 2rem 0; }
+        .panel { background: var(--panel); border: 1px solid var(--table-border); border-radius: 14px; padding: 1rem 1.25rem; }
+        .callout { background: var(--callout-bg); border: 1px solid var(--callout-border); border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; }
+        .callout strong { color: #dfe3ff; }
+        ul, ol { padding-left: 1.35rem; }
+        code, pre, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+        code { background: var(--code-bg); padding: 0.15rem 0.35rem; border-radius: 6px; border: 1px solid #1e2330; }
+        pre { background: var(--code-bg); border: 1px solid #1e2330; border-radius: 10px; padding: 1rem; overflow: auto; }
+        table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: var(--panel); border: 1px solid var(--table-border); border-radius: 10px; overflow: hidden; }
+        th, td { border-bottom: 1px solid var(--table-border); padding: 0.75rem 0.75rem; text-align: left; vertical-align: top; }
+        th { background: #1b1f2a; color: #e9ecff; font-weight: 600; } tr:last-child td { border-bottom: 0; }
+        .small { color: var(--muted); font-size: 0.95rem; }
+        .hero { background: linear-gradient(135deg, rgba(138, 99, 255, 0.12), rgba(55, 192, 255, 0.08)); border: 1px solid rgba(138, 99, 255, 0.25); padding: 1rem 1.25rem; border-radius: 16px; }
+        .toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem 1rem; margin-top: 0.75rem; }
+        @media (max-width: 720px) { .toc { grid-template-columns: 1fr; } }
+        .toc a { display: block; padding: 0.5rem 0.6rem; border: 1px solid var(--table-border); border-radius: 10px; background: #13161c; }
+        .toc a code { background: transparent; border: 0; padding: 0; color: #cfe5ff; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>SummonersBook User Guide</h1>
+    <div class="hero small">
+        SummonersBook is a <strong>desktop app for esports players (League of Legends)</strong>, optimized for a fast
+        <strong>Command Line Interface (CLI)</strong> with clear visual feedback via GUI. If you can type fast,
+        SummonersBook helps you manage players and form balanced teams faster than traditional GUI apps.
+    </div>
+
+    <hr/>
+
+    <h2>Quick start</h2>
+    <ol>
+        <li>Ensure you have Java <code>17</code> or above installed on your computer.<br/>
+            <strong>Mac users:</strong> Use the precise JDK version prescribed
+            <a href="https://se-education.org/guides/tutorials/javaInstallationMac.html" target="_blank" rel="noopener">here</a>.
+        </li>
+        <li>Download the latest <code>summonersbook.jar</code> from
+            <a href="https://github.com/AY2526S1-CS2103T-F08b-1/tp/releases" target="_blank" rel="noopener">Releases</a>.
+        </li>
+        <li>Copy the file to the folder you want to use as the <em>home folder</em> for SummonersBook.</li>
+        <li>Open a command terminal, <code>cd</code> into the folder that contains the jar, and run:<br/>
+            <code>java -jar addressbook.jar</code><br/>
+            A GUI should appear in a few seconds (with some sample data).
+        </li>
+        <li>Try some commands:
+            <ul>
+                <li><code>add n/Faker rk/Grandmaster rl/Bottom c/Sivir</code> — Add a player</li>
+                <li><code>find rl/Support</code> — Filter by role Support</li>
+                <li><code>group</code> — Auto-create balanced 5‑player teams</li>
+                <li><code>viewteam 1</code> — Show details for Team 1</li>
+                <li><code>exit</code> — Exit the app</li>
+            </ul>
+        </li>
+        <li>Refer to the <a href="#features">Features</a> section for full command details.</li>
+    </ol>
+
+    <hr/>
+
+    <h2 id="features">Features</h2>
+
+    <div class="callout">
+        <strong>Notes about the command format:</strong><br/>
+        <ul>
+            <li>Words in <code>UPPER_CASE</code> are parameters you supply. e.g. in
+                <code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code>, <code>NAME</code>, <code>RANK</code>,
+                <code>ROLE</code>, <code>CHAMPION</code> are parameters.
+            </li>
+            <li>Items in square brackets are optional. e.g. <code>find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]</code>.
+            </li>
+            <li>Parameters can be in any order. e.g. <code>add rk/RANK n/NAME rl/ROLE c/CHAMPION</code> is valid.</li>
+            <li>Extraneous parameters for commands that take none (e.g. <code>help</code>, <code>exit</code>) are
+                ignored.
+            </li>
+            <li>Indices refer to the <strong>currently displayed</strong> list (players or teams), starting from 1.</li>
+            <li>If using a PDF, be careful when copying multi-line commands; line-break spaces may be omitted.</li>
+        </ul>
+    </div>
+
+    <!-- NEW: Features summary / table of contents -->
+    <div class="panel">
+        <h3 style="margin-top:0.2rem;">Features summary</h3>
+        <div class="toc">
+            <a href="#cmd-help"><code>help</code> — View help</a>
+            <a href="#cmd-add"><code>add</code> — Add a player</a>
+            <a href="#cmd-view"><code>view</code> — View a player</a>
+            <a href="#cmd-delete"><code>delete</code> — Delete a player</a>
+            <a href="#cmd-find"><code>find</code> — Find players</a>
+            <a href="#cmd-group"><code>group</code> — Auto‑group players</a>
+            <a href="#cmd-ungroup"><code>ungroup</code> — Disband team(s)</a>
+            <a href="#cmd-viewteam"><code>viewteam</code> — View a team</a>
+            <a href="#cmd-exit"><code>exit</code> — Exit app</a>
+            <a href="#cmd-saving"><code>saving</code> — Auto‑save</a>
+            <a href="#cmd-editdata"><code>edit data</code> — JSON file</a>
+        </div>
+    </div>
+
+    <h2>SummonersBook commands</h2>
+
+    <a id="cmd-help"></a>
+    <h3>Viewing help : <code>help</code></h3>
+    <p>Shows a message explaining how to access the help page.</p>
+    <p><strong>Format:</strong> <code>help</code></p>
+
+    <a id="cmd-add"></a>
+    <h3>Adding a player: <code>add</code></h3>
+    <p>Adds a new player with mandatory details.</p>
+    <p><strong>Format:</strong> <code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code></p>
+    <p><strong>Examples:</strong></p>
+    <ul>
+        <li><code>add n/Faker rk/Grandmaster rl/Bottom c/Sivir</code></li>
+        <li><code>add n/Imissher rk/Gold rl/Support c/Thresh</code></li>
+    </ul>
+
+    <a id="cmd-view"></a>
+    <h3>View a player's details : <code>view</code></h3>
+    <p>Displays full information for a specific player.</p>
+    <p><strong>Format:</strong> <code>view INDEX</code></p>
+    <p><strong>Example:</strong> <code>view 1</code></p>
+    <p><strong>Failure output:</strong> <code>The player index provided is invalid.</code></p>
+
+    <a id="cmd-delete"></a>
+    <h3>Deleting a player: <code>delete</code></h3>
+    <p>Removes a player permanently.</p>
+    <p><strong>Format:</strong> <code>delete INDEX</code></p>
+    <ul>
+        <li>Deletes the person at the specified <code>INDEX</code>.</li>
+        <li>The index refers to the index number shown in the displayed person list.</li>
+        <li>The index must be a positive integer 1, 2, 3, …</li>
+    </ul>
+    <p><strong>Example:</strong> <code>delete 3</code></p>
+    <p><strong>Success output:</strong> <code>Deleted Player: &lt;NAME&gt;.</code></p>
+    <p><strong>Failure outputs:</strong></p>
+    <ul>
+        <li><code>The player index provided is invalid.</code></li>
+        <li><code>Cannot delete player. &lt;NAME&gt; is currently on team '&lt;TEAM NAME&gt;'.</code></li>
+    </ul>
+
+    <a id="cmd-find"></a>
+    <h3>Finding players : <code>find</code></h3>
+    <p>Filters the player list by one or more attributes. Matching is <strong>case-insensitive</strong>. Results show
+        players that satisfy <strong>all</strong> provided filters (logical AND). Exact value matching is used for
+        rank/role; name/champion use substring match.</p>
+    <p><strong>Format (any order, at least one filter):</strong> <code>find [n/NAME] [rl/ROLE] [rk/RANK]
+        [c/CHAMPION]</code></p>
+    <ul>
+        <li>Case-insensitive. <code>faker</code> matches <code>Faker</code>.</li>
+        <li>Full-word (AND) name matching for keywords use the keyword mode; substring for <code>n/</code> and
+            <code>c/</code>.
+        </li>
+    </ul>
+    <p><strong>Examples:</strong></p>
+    <ul>
+        <li><code>find rl/Bottom</code> — all Bottom players</li>
+        <li><code>find rk/Gold</code> — all Gold players</li>
+        <li><code>find rl/Mid rk/Diamond</code> — all Diamond Mid players</li>
+        <li><code>find c/Thresh</code> — players whose main champion name contains “Thresh”</li>
+        <li><code>find n/faker</code> — players whose name contains “faker”</li>
+    </ul>
+
+    <a id="cmd-group"></a>
+    <h3>Auto-grouping players into teams: <code>group</code></h3>
+    <p>Forms as many balanced teams of five as possible from <strong>unassigned</strong> players.</p>
+    <p><strong>Format:</strong> <code>group</code></p>
+
+    <a id="cmd-ungroup"></a>
+    <h3>Disbanding a team or all teams : <code>ungroup</code></h3>
+    <p>Disbands one team (returns its players to the unassigned pool) or disbands all teams.</p>
+    <p><strong>Format:</strong> <code>ungroup TEAM_INDEX|all</code></p>
+    <p><strong>Examples:</strong></p>
+    <ul>
+        <li><code>ungroup 1</code> — disbands the 1st team</li>
+        <li><code>ungroup all</code> — disbands all teams</li>
+    </ul>
+
+    <a id="cmd-viewteam"></a>
+    <h3>Viewing a team’s details : <code>viewteam</code></h3>
+    <p>Shows roster and summary performance for a specific team.</p>
+    <p><strong>Format:</strong> <code>viewteam INDEX</code></p>
+    <p><strong>Example:</strong> <code>viewteam 1</code></p>
+
+    <a id="cmd-exit"></a>
+    <h3>Exiting the program : <code>exit</code></h3>
+    <p>Closes the application.</p>
+    <p><strong>Format:</strong> <code>exit</code></p>
+
+    <a id="cmd-saving"></a>
+    <h3>Saving the data</h3>
+    <p>Data is saved automatically to disk after any command that changes data. No manual save is required.</p>
+
+    <a id="cmd-editdata"></a>
+    <h2>Editing the data file</h2>
+    <p>SummonersBook stores data as JSON at <code>[JAR file location]/data/summonersbook.json</code>.
+        Advanced users can edit this file directly.</p>
+
+    <hr/>
+
+    <h2>Other commands that AB3 has</h2>
+
+    <h3>Listing all persons : <code>list</code></h3>
+    <p>Shows a list of all persons in the address book.</p>
+    <p><strong>Format:</strong> <code>list</code></p>
+
+    <h3>Editing a person : <code>edit</code></h3>
+    <p>Edits an existing person in the address book.</p>
+    <p><strong>Format:</strong> <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​</code></p>
+    <ul>
+        <li>Edits the person at the specified <code>INDEX</code> (1-based from displayed list).</li>
+        <li>At least one optional field must be provided; existing values will be updated.</li>
+        <li>When editing tags, existing tags are replaced with the provided ones; <code>t/</code> removes all.</li>
+    </ul>
+    <p><strong>Examples:</strong></p>
+    <ul>
+        <li><code>edit 1 p/91234567 e/johndoe@example.com</code></li>
+        <li><code>edit 2 n/Betsy Crower t/</code></li>
+    </ul>
+
+    <h3>Locating persons by name: <code>find</code></h3>
+    <p>Finds persons whose names contain ANY of the given keywords.</p>
+    <p><strong>Format:</strong> <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+    <ul>
+        <li>Case-insensitive; order of keywords does not matter.</li>
+        <li>Only the name is searched; full-word matching; OR search across keywords.</li>
+    </ul>
+    <p><strong>Examples:</strong></p>
+    <ul>
+        <li><code>find John</code> — returns <em>john</em> and <em>John Doe</em></li>
+        <li><code>find alex david</code> — returns <em>Alex Yeoh</em>, <em>David Li</em></li>
+    </ul>
+
+    <h3>Clearing all entries : <code>clear</code></h3>
+    <p>Clears all entries from the address book.</p>
+    <p><strong>Format:</strong> <code>clear</code></p>
+
+    <h3>Editing the data file (AB3)</h3>
+    <div class="callout small">
+        <strong>Caution:</strong> If the data file becomes invalid, the app will start with an empty dataset on next
+        run.
+        Back up the file before editing. Invalid values can cause unexpected behavior.
+    </div>
+
+    <h3>Archiving data files <span class="small">[coming in v2.0]</span></h3>
+    <p><em>Details coming soon ...</em></p>
+
+    <hr/>
+
+    <h2>FAQ</h2>
+    <p><strong>Q:</strong> How do I transfer my data to another Computer?<br/>
+        <strong>A:</strong> Install the app on the other computer and overwrite the empty data file it creates with the
+        file that contains the data of your previous home folder.</p>
+
+    <p><strong>Q:</strong> Why can’t I delete a player who’s on a team?<br/>
+        <strong>A:</strong> Team rosters must always have 5 players. Remove the player from their team (via <code>editteam</code>
+        in future versions or <code>ungroup</code> and regroup) before deleting.</p>
+
+    <p><strong>Q:</strong> How are teams named when using <code>group</code>?<br/>
+        <strong>A:</strong> Sequentially (<code>Team A</code>, <code>Team B</code>, …), skipping any existing names to
+        avoid conflicts.</p>
+
+    <hr/>
+
+    <h2>Known issues</h2>
+    <ol>
+        <li><strong>Multiple screens:</strong> If you move the app to a secondary screen and later switch to only the
+            primary screen, the GUI may open off-screen. Delete <code>preferences.json</code> before running again.
+        </li>
+        <li><strong>Help Window minimized:</strong> Running <code>help</code> while the Help Window is minimized won’t
+            open a new one. Manually restore the minimized Help Window.
+        </li>
+    </ol>
+
+    <hr/>
+
+    <h2>Command summary — SummonersBook</h2>
+    <table>
+        <thead>
+        <tr><th>Action</th><th>Format, Examples</th></tr>
+        </thead>
+        <tbody>
+        <tr><td><strong>Help</strong></td><td><code>help</code></td></tr>
+        <tr><td><strong>Add player</strong></td><td><code>add n/NAME rk/RANK rl/ROLE c/CHAMPION</code></td></tr>
+        <tr><td><strong>View player</strong></td><td><code>view INDEX</code></td></tr>
+        <tr><td><strong>Delete player</strong></td><td><code>delete INDEX</code></td></tr>
+        <tr><td><strong>Find players</strong></td><td><code>find [n/NAME] [rl/ROLE] [rk/RANK] [c/CHAMPION]</code></td></tr>
+        <tr><td><strong>Group teams</strong></td><td><code>group</code></td></tr>
+        <tr><td><strong>Ungroup</strong></td><td><code>ungroup TEAM_INDEX</code> · <code>ungroup all</code></td></tr>
+        <tr><td><strong>View team</strong></td><td><code>viewteam INDEX</code></td></tr>
+        <tr><td><strong>Exit</strong></td><td><code>exit</code></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Command summary — AB3</h2>
+    <table>
+        <thead>
+        <tr><th>Action</th><th>Format, Examples</th></tr>
+        </thead>
+        <tbody>
+        <tr><td><strong>Add</strong></td><td><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​</code></td></tr>
+        <tr><td><strong>Clear</strong></td><td><code>clear</code></td></tr>
+        <tr><td><strong>Delete</strong></td><td><code>delete INDEX</code></td></tr>
+        <tr><td><strong>Edit</strong></td><td><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​</code></td></tr>
+        <tr><td><strong>Find</strong></td><td><code>find KEYWORD [MORE_KEYWORDS]</code></td></tr>
+        <tr><td><strong>List</strong></td><td><code>list</code></td></tr>
+        <tr><td><strong>Help</strong></td><td><code>help</code></td></tr>
+        </tbody>
+    </table>
+
+    <p class="small">© 2025 SummonersBook. This guide is bundled for offline use in the Help window.</p>
+</div>
+</body>
+</html>

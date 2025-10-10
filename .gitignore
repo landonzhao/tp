@@ -22,3 +22,7 @@ src/test/data/sandbox/
 .DS_Store
 docs/_site/
 docs/_markbind/logs/
+
+# Allow in-app help documentation in resources
+!src/main/resources/docs/
+!src/main/resources/docs/**
