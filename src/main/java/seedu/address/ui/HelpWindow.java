@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -8,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -19,7 +16,8 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    private static final String LOCAL_HELP_PAGE = "/docs/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -29,9 +27,6 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
-    @FXML
-    private WebView helpWebView;
-
     /**
      * Creates a new HelpWindow.
      *
@@ -39,7 +34,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        loadHelpPage();
+        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -103,16 +98,5 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
-    }
-
-    private void loadHelpPage() {
-        WebEngine engine;
-        engine = helpWebView.getEngine();
-        URL url = HelpWindow.class.getResource(LOCAL_HELP_PAGE);
-        if (url != null) {
-            engine.load(url.toExternalForm());
-        } else {
-            engine.loadContent("<h2>Help page not found</h2><p>Expected " + LOCAL_HELP_PAGE + "</p>");
-        }
     }
 }
