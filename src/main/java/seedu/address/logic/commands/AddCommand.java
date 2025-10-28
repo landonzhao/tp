@@ -13,7 +13,11 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a player to SummonersBook.
+ * Represents a command that adds a new player (represented by {@code Person})
+ * to SummonersBook.
+ * <p>
+ * This command ensures no duplicate players exist in the model before
+ * adding the specified player.
  */
 public class AddCommand extends Command {
 

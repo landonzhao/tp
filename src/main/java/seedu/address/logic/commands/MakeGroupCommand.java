@@ -21,7 +21,16 @@ import seedu.address.model.team.exceptions.DuplicateRoleException;
 import seedu.address.model.team.exceptions.InvalidTeamSizeException;
 
 /**
- * Creates a team consisting of 5 existing players, manually provided by the user
+ * Creates a new {@code Team} consisting of exactly five existing players
+ * already stored in SummonersBook.
+ * <p>
+ * Ensures that:
+ * <ul>
+ *   <li>All provided players exist in the model.</li>
+ *   <li>No duplicate names are provided.</li>
+ *   <li>No player is reused from another team.</li>
+ *   <li>Team satisfies role and champion uniqueness rules.</li>
+ * </ul>
  */
 public class MakeGroupCommand extends Command {
 
@@ -51,7 +60,9 @@ public class MakeGroupCommand extends Command {
     private final List<Name> playerNames;
 
     /**
-     * Creates a MakeGroupCommand to create a team with the specified players.
+     * Constructs a {@code MakeGroupCommand} to create a team with the given list of player names.
+     *
+     * @param playerNames The names of players to form a team. Must not be {@code null}.
      */
     public MakeGroupCommand(List<Name> playerNames) {
         requireNonNull(playerNames);
@@ -62,41 +73,82 @@ public class MakeGroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // === 1. Check number of players ===
+        validatePlayerCount();
+        validateNoDuplicateNames();
+
+        Set<Person> teamMembers = fetchValidPlayers(model);
+        Team newTeam = createValidatedTeam(teamMembers);
+
+        model.addTeam(newTeam);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(newTeam)));
+    }
+
+    /**
+     * Ensures exactly 5 player names were provided.
+     *
+     * @throws CommandException If count is not 5.
+     */
+    private void validatePlayerCount() throws CommandException {
         if (playerNames.size() != 5) {
             throw new CommandException(MESSAGE_INSUFFICIENT_PLAYERS);
         }
+    }
 
-        // === 2. Check for duplicates in provided names ===
+    /**
+     * Ensures all provided player names are unique.
+     *
+     * @throws CommandException If duplicate names exist in the input.
+     */
+    private void validateNoDuplicateNames() throws CommandException {
         Set<Name> uniqueNames = new HashSet<>(playerNames);
         if (uniqueNames.size() < playerNames.size()) {
             throw new CommandException(MESSAGE_DUPLICATE_NAMES);
         }
+    }
 
-        // === 3. Fetch and validate all players ===
+    /**
+     * Retrieves all players corresponding to the given names and validates they exist and are unused.
+     *
+     * @param model The application model.
+     * @return A set of validated {@code Person} objects ready to form a team.
+     * @throws CommandException If a player does not exist or is already in another team.
+     */
+    private Set<Person> fetchValidPlayers(Model model) throws CommandException {
         Set<Person> teamMembers = new HashSet<>();
+
         for (Name name : playerNames) {
             Optional<Person> personOpt = model.findPersonByName(name);
             if (personOpt.isEmpty()) {
                 throw new CommandException(String.format(MESSAGE_PLAYER_NOT_FOUND, name.fullName));
             }
-            if (model.isPersonInAnyTeam(personOpt.get())) {
+
+            Person person = personOpt.get();
+            if (model.isPersonInAnyTeam(person)) {
                 throw new CommandException(String.format(MESSAGE_REUSED_PLAYERS, name.fullName));
             }
-            teamMembers.add(personOpt.get());
+
+            teamMembers.add(person);
         }
 
-        // Construct and check for duplicates
-        Team newTeam;
+        return teamMembers;
+    }
+
+    /**
+     * Creates and validates a team using the given members.
+     *
+     * @param teamMembers A set of validated players.
+     * @return A newly created {@code Team}.
+     * @throws CommandException If the team violates size, role, or champion constraints.
+     */
+    private Team createValidatedTeam(Set<Person> teamMembers) throws CommandException {
         try {
-            newTeam = new Team(new ArrayList<>(teamMembers)); // Team handles role/rank validation
+            return new Team(new ArrayList<>(teamMembers));
         } catch (InvalidTeamSizeException | DuplicateRoleException | DuplicateChampionException e) {
             throw new CommandException(e.getMessage());
         }
-
-        model.addTeam(newTeam);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(newTeam)));
     }
+
+
 
     @Override
     public boolean equals(Object other) {

@@ -26,7 +26,10 @@ import seedu.address.model.person.RoleContainsKeywordsPredicate;
 import seedu.address.model.person.ScoreInRangePredicate;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Filters the list of players in SummonersBook based on one or more criteria:
+ * rank, role, champion, or score threshold.
+ * <p>
+ * Displays the filtered results as a list with index numbers.
  */
 public class FilterCommand extends Command {
 
@@ -45,6 +48,7 @@ public class FilterCommand extends Command {
             + PREFIX_CHAMPION + "Yasuo"
             + PREFIX_SCORE + "2.4";
 
+    /** Error message displayed when no filter criteria are provided. */
     public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
     private final RankContainsKeywordsPredicate rankPredicate;
@@ -55,7 +59,9 @@ public class FilterCommand extends Command {
     private final FilterPersonDescriptor filterPersonDescriptor;
 
     /**
-     * @param filterPersonDescriptor details to edit the person with
+     * Creates a {@code FilterCommand} with the given filtering criteria.
+     *
+     * @param filterPersonDescriptor Describes which fields to filter by. Must not be {@code null}.
      */
     public FilterCommand(FilterPersonDescriptor filterPersonDescriptor) {
         requireNonNull(filterPersonDescriptor);
@@ -98,9 +104,22 @@ public class FilterCommand extends Command {
                 .toString();
     }
 
+
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores filtering criteria for a {@code FilterCommand}.
+     * <p>
+     * Each non-empty field represents a constraint applied during filtering.
+     * <ul>
+     *   <li>Multiple values within the <b>same field</b> (e.g., {@code rk Gold rk Silver})
+     *       are combined using a logical <b>OR</b>.
+     *       <br>→ A player matches if they satisfy <i>any</i> of those values.</li>
+     *   <li>Values from <b>different fields</b> (e.g., {@code rk Gold rk Silver rl Mid})
+     *       are combined using a logical <b>AND</b>.
+     *       <br>→ A player must satisfy <i>at least one</i> value from <i>each</i> specified field.</li>
+     * </ul>
+     * <p>
+     * In summary:
+     * <b>Same field → OR</b>, <b>Different fields → AND</b>.
      */
     public static class FilterPersonDescriptor {
         private Set<Role> roles;
