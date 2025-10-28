@@ -16,7 +16,11 @@ import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Utility methods for parsing raw {@code String} inputs into domain objects
+ * used across various {@code *Parser} classes.
+ * <p>
+ * Each method validates and trims input values before constructing
+ * the corresponding model object.
  */
 public class ParserUtil {
 

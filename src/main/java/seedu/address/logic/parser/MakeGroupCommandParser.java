@@ -11,15 +11,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 
 /**
- * Parses input arguments and creates a new MakeGroupCommand object
+ * Parses user input to create a {@link MakeGroupCommand}.
+ * <p>
+ * Expected format:
+ * {@code makegroup n/NAME1 n/NAME2 n/NAME3 n/NAME4 n/NAME5}
+ * <br>
+ * Ensures that exactly five {@code NAME} prefixes are provided.
  */
 public class MakeGroupCommandParser implements Parser<MakeGroupCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of MakeGroupCommand
-     * and returns a MakeGroupCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of {@code MakeGroupCommand}
+     * and returns a {@code MakeGroupCommand} object for execution.
      *
-     * @throws ParseException if the user input does not conform to the expected format
+     * @param args Raw user input string.
+     * @return A fully constructed {@code MakeGroupCommand}.
+     * @throws ParseException If user input does not conform to the expected format.
      */
     @Override
     public MakeGroupCommand parse(String args) throws ParseException {
@@ -32,7 +39,7 @@ public class MakeGroupCommandParser implements Parser<MakeGroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeGroupCommand.MESSAGE_USAGE));
         }
 
-        // Convert each string to a Name object
+        // Convert each name string to a Name object
         List<Name> playerNames = new ArrayList<>();
         for (String nameStr : nameStrings) {
             playerNames.add(ParserUtil.parseName(nameStr));

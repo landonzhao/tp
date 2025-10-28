@@ -30,7 +30,7 @@ public class Stats {
                     + "Gold difference at 15m must be between -10,000 and 10,000; "
                     + "KDA must be between 0 and 200.";
 
-    /** The average score. */
+    /** The average score across all recorded performance scores. */
     public final float value;
 
     /** Historical list of CS per minute values recorded. */
@@ -58,7 +58,9 @@ public class Stats {
     }
 
     /**
-     * Constructor used for updating stats immutably.
+     * Constructs a {@code Stats} object with the provided stats lists.
+     * <p>
+     * Used internally to create updated immutable instances.
      */
     public Stats(ArrayList<Float> csPerMinute,
                   ArrayList<Integer> goldDiffAt15,
@@ -104,7 +106,8 @@ public class Stats {
     }
 
     /**
-     * @return a new {@code Stats} object with lists where the last element is removed
+     * Returns a new {@code Stats} object with lists where the last element is removed.
+     * If the lists are empty, returns an identical empty-stats instance.
      */
     public Stats deleteLatestStats() {
         var cs = new ArrayList<>(this.csPerMinute);
@@ -123,24 +126,36 @@ public class Stats {
     }
 
     /**
-     * Returns the current average performance score as a string formatted to one decimal place.
+     * Returns the current average performance score.
      */
     public float getValue() {
         return this.value;
     }
 
+    /**
+     * Returns a defensive copy of the CS/min list.
+     */
     public ArrayList<Float> getCsPerMinute() {
         return new ArrayList<>(csPerMinute);
     }
 
+    /**
+     * Returns a defensive copy of the gold difference list.
+     */
     public ArrayList<Integer> getGoldDiffAt15() {
         return new ArrayList<>(goldDiffAt15);
     }
 
+    /**
+     * Returns a defensive copy of the KDA list.
+     */
     public ArrayList<Float> getKdaScores() {
         return new ArrayList<>(kdaScores);
     }
 
+    /**
+     * Returns a defensive copy of the individual score list.
+     */
     public ArrayList<Double> getScores() {
         return new ArrayList<>(scores);
     }
