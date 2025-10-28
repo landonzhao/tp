@@ -28,8 +28,9 @@ import seedu.address.model.person.ScoreInRangePredicate;
 /**
  * Filters the list of players in SummonersBook based on one or more criteria:
  * rank, role, champion, or score threshold.
- * <p>
- * Displays the filtered results as a list with index numbers.
+ * Only persons matching all provided criteria will be included in the filtered list.
+ * <p>The filtered list is updated in the model, and the command returns a summary
+ *  message indicating the number of persons found.
  */
 public class FilterCommand extends Command {
 
